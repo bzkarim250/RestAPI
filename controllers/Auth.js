@@ -1,5 +1,4 @@
 import User from "../model/User";
-
 class authController{
     static async signup(req,res){
         const newUser=await new User({

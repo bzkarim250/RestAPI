@@ -26,7 +26,9 @@
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
     "mongoose": "^6.8.3",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "swagger-jsdoc": "^6.2.7",
+    "swagger-ui-express": "^4.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
