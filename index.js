@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import authRoute from './routes/Auth';
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpec from './swagger';
+import productRoute from './routes/Product';
 
 
 
@@ -18,4 +19,5 @@ app.listen(process.env.PORT||3000,()=>{
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/api/auth",authRoute);
+app.use("api/product",productRoute);
 
