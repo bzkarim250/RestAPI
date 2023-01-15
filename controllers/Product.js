@@ -30,5 +30,13 @@ class productController{
             res.status(404).json({error:error.message});
         }
     }
+    static async updateProduct(req,res){
+        try {
+            const update=await Product.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true});
+            res.status(201).json(update);
+        } catch (error) {
+            res.status(404).json({error:error.message});
+        }
+    }
 }
 export default productController;
