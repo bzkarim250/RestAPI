@@ -19,5 +19,5 @@ app.listen(process.env.PORT||3000,()=>{
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/api/auth",authRoute);
-app.use("api/product",productRoute);
+app.use("/api/product",productRoute);
 
