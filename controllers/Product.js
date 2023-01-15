@@ -14,5 +14,13 @@ class productController{
             res.status(401).json({error:error.message});
         }
     }
+    static async allProducts(req,res){
+        try {
+            const products=await Product.find().sort({createdAt:-1});
+            res.status(200).json(products);
+        } catch (error) {
+            res.status(404).json({error:error.message});
+        }
+    }
 }
 export default productController;
