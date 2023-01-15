@@ -21,3 +21,8 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/api/auth",authRoute);
 app.use("/api/product",productRoute);
 
+//404 page
+app.use((req,res)=>{
+    res.status(404).send('Page note found');
+})
+
