@@ -22,5 +22,13 @@ class productController{
             res.status(404).json({error:error.message});
         }
     }
+    static async singleProduct(req,res){
+        try {
+            const product= await Product.findById(req.params.id);
+            res.status(200).json(product);
+        } catch (error) {
+            res.status(404).json({error:error.message});
+        }
+    }
 }
 export default productController;

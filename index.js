@@ -18,13 +18,9 @@ app.listen(process.env.PORT||3000,()=>{
 })
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-//user routes
+
 app.use("/api/auth",authRoute);
-
-//product routes
 app.use("/api/product",productRoute);
-app.use("/api/product",productRoute);
-
 //404 page
 app.use((req,res)=>{
     res.status(404).send('Page note found');
