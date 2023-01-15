@@ -4,13 +4,30 @@ class authController{
         try{
         const newUser=await new User({
             name:req.body.name,
-            age:req.body.age,
+            email:req.body.email,
+            age:req.body.age
         });
         const user=await newUser.save();
         res.status(201).json(user);
     }
     catch(error){
-        console.log(error);
+        res.status(404).json({error:error.message});
+    }
+}
+static async allUsers(req,res){
+    try {
+        const users= await User.find();
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(404).json({error:error.message});
+    }
+}
+static async singleUser(req,res){
+    try {
+        const single=await User.findById(req.params.id);
+        res.status(200).json(single);
+    } catch (error) {
+        res.status(404).json({error:error.message});
     }
 }
 }
