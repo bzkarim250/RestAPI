@@ -23,6 +23,7 @@
     "@babel/polyfill": "^7.12.1",
     "@babel/register": "^7.18.9",
     "@babel/runtime": "^7.19.4",
+    "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
     "mongoose": "^6.8.3",

@@ -1,11 +1,17 @@
 import User from "../model/User";
+import bcrypt from 'bcrypt';
+
 class authController{
     static async signup(req,res){
         try{
+        const saltRounds=10;
+        const password=req.body.password;
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
         const newUser=await new User({
             name:req.body.name,
             email:req.body.email,
-            age:req.body.age
+            age:req.body.age,
+            password:hashedPassword
         });
         const user=await newUser.save();
         res.status(201).json(user);
