@@ -5,6 +5,7 @@ import authRoute from './routes/Auth';
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpec from './swagger';
 import productRoute from './routes/Product';
+import userRoute from './routes/User';
 
 
 
@@ -21,6 +22,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use("/api/auth",authRoute);
 app.use("/api/product",productRoute);
+app.use("/api/user/",userRoute);
 //404 page  //middleware
 app.use((req,res)=>{
     res.status(404).send('Page note found');

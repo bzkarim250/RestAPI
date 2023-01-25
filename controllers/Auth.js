@@ -1,7 +1,6 @@
 import User from "../model/User";
 import bcrypt from 'bcrypt';
 import dotenv from "dotenv";
-import jwt from "jsonwebtoken";
 import { createToken } from "../helpers/jwt";
 
 dotenv.config();
@@ -52,7 +51,6 @@ static async login(req,res){
             res.status(404).json({error:'Wrong Credentials'});
         }
         const originalPassword=user.password;
-        const saltRounds=10;
         const password=req.body.password;
         bcrypt.compare(password,originalPassword, function(err, result) {
             if (result) {
