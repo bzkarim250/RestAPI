@@ -17,7 +17,20 @@ class authController{
         res.status(201).json(user);
     }
     catch(error){
-        res.status(404).json({error:error.message});
+        const handleErrors=(error)=>{
+            let errors={email:'',password:''};
+            if(error.code===11000){
+                errors.email='email already exists';
+                return errors;
+            }
+            if(error.message.includes('User validation failed')){
+                Object.values(error.errors).forEach(({properties})=>{
+                    errors[properties.path]=properties.message;
+                });
+            }
+            return errors;
+        }
+        res.status(400).json({error:handleErrors(error)});
     }
 }
 static async allUsers(req,res){
