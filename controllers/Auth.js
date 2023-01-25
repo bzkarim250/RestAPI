@@ -51,13 +51,14 @@ static async login(req,res){
         if(!user){
             res.status(404).json({error:'Wrong Credentials'});
         }
-        const originalPassword=await User.findOne({password:req.body.password});
+        const originalPassword=user.password;
+        const saltRounds=10;
         const password=req.body.password;
         bcrypt.compare(password,originalPassword, function(err, result) {
             if (result) {
                 const {password,...others}=user._doc;
-                const accessToken=createToken({user:_id});
-                res.status(200).json(...others,accessToken);
+                const accessToken=createToken({user:user._id});
+                res.status(200).json(Object.assign({},others,{accessToken}));
             } else {
               res.status(404).json({error:"Wrong credentials"});
             }

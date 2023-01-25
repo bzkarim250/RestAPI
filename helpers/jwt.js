@@ -2,10 +2,11 @@ import jwt from "jsonwebtoken";
 import dotenv from 'dotenv';
 dotenv.config();
 //payload=id
-const maxAge=24*60*60;
+const maxAge=24*60*60*1000;
 export const createToken=(payload)=>{
-    return jwt.sign(payload,process.env.JWT_SCRETE_KEY,{expiresIn:maxAge});
+    return jwt.sign(payload,process.env.JWT_SCRETE_KEY,
+        {expiresIn:maxAge});
 }
 export const verfyToken=(payload)=>{
-    return jwt.sign(payload,process.env.JWT_SCRETE_KEY);
+    return jwt.verify(payload,process.env.JWT_SCRETE_KEY);
 }
