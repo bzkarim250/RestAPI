@@ -19,7 +19,6 @@ const route=express.Router();
  *         description: User created
  */
 route.post('/signup',authController.signup);
-route.get('/users',authController.allUsers);
 route.get('/user/:id',authController.singleUser);
 route.post('/login',authController.login);
 export default route;

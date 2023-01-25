@@ -65,15 +65,6 @@ static async login(req,res){
         res.status(404).json({error:error.message});
     }
 }
-
-static async allUsers(req,res){
-    try {
-        const users= await User.find();
-        res.status(200).json(users);
-    } catch (error) {
-        res.status(404).json({error:error.message});
-    }
-}
 static async singleUser(req,res){
     try {
         const single=await User.findById(req.params.id);
