@@ -1,24 +1,9 @@
 import express from 'express';
 import authController from "../controllers/Auth";
+import validate from '../middlewares/validation';
 
 const route=express.Router();
-
-/**
- * @swagger
- * /api/auth/signup:
- *   post:
- *     description: Create a new item
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Item'
- *     responses:
- *       201:
- *         description: User created
- */
-route.post('/signup',authController.signup);
+route.post('/signup',validate,authController.signup);
 route.get('/user/:id',authController.singleUser);
 route.post('/login',authController.login);
 export default route;
