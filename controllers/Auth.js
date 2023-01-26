@@ -9,37 +9,36 @@ class authController{
     static async signup(req,res){
         try{
         const saltRounds=10;
-        //const salt=await bcrypt.genSalt()
-        const password=req.body.password;
+        const { name,email,age,password } =req.body;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
         const newUser=await new User({
-            name:req.body.name,
-            email:req.body.email,
-            age:req.body.age,
+            name:name,
+            email:email,
+            age:age,
             password:hashedPassword
         });
-                // newUser.pre('save', async function(next) {
-        //     if (!this.isModified('password')) return next();
-        //     this.password = await bcrypt.hash(password, saltRounds);
-        //     next();
-        // });   pre Hooks
         const user=await newUser.save();
         res.status(201).json(user);
     }
     catch(error){
-        const handleErrors=(error)=>{
-            let errors={email:'',password:''};
-            if(error.code===11000){
-                errors.email='email already exists';
-                return errors;
+        const handleErrors = (error) => {
+            let errors={name:'',email:'',password:'',age:''};
+            if (error.code === 11000) {
+                errors.email = 'email already exists';
             }
-            if(error.message.includes('User validation failed')){
-                Object.values(error.errors).forEach(({properties})=>{
-                    errors[properties.path]=properties.message;
+            if (error.message.includes('User validation failed')) {
+                Object.values(error.errors).forEach(({ properties }) => {
+                    errors[properties.path] = properties.message;
+                });
+            }
+            if (error.isJoi) {
+                error.details.forEach(({ path, message }) => {
+                    errors[path] = message;
                 });
             }
             return errors;
         }
+        
         res.status(400).json({error:handleErrors(error)});
     }
 }
