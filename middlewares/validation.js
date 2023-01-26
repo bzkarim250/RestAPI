@@ -1,4 +1,3 @@
-import * as Joi from 'joi';
 import { signupSchema } from "../helpers/schemas/signup";
 
 const validate=(req,res,next)=>{
