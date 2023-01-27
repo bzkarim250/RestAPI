@@ -16,6 +16,10 @@ const options={
             {
                 url: 'http://localhost:5000',
                 description:'development server'
+            },
+            {
+                url:'rest-6bna1hw0u-bzkarim250.vercel.app',
+                decription:'production server'
             }
         ],
         tags:[
