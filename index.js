@@ -2,11 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-import connectDb from './database/dbConnect';
-import authRoute from './routes/Auth';
-import swaggerDocs from './api-docs/swagger';
-import productRoute from './routes/Product';
-import userRoute from './routes/User';
+import connectDb from './src/database/dbConnect';
+import authRoute from './src/routes/Auth';
+import swaggerDocs from './src/api-docs/swagger';
+import productRoute from './src/routes/Product';
+import userRoute from './src/routes/User';
 
 
 
