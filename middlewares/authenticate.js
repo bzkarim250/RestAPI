@@ -5,15 +5,16 @@ dotenv.config();
 
 export const verifyToken=(req,res,next)=>{
     try {
-        const authHeader=req.headers.token;
+        const authHeader = req.headers.authorization;
         if(!authHeader)
             return res.status(401).json({staus:"error",error:"You are not authenticated"});
         const token=authHeader.split(' ')[1];
         if(!token) 
             return res.status(401).json({status:"error",error:"You are not authenticated"});
-        const verified=verify(token);
+        const verified=verify(token,process.env.JWT_SCRETE_KEY);
         req.user=verified;
+        next();
     } catch (error) {
-        res.staus(401).json({erro:error.message});
+        res.status(401).json({erro:error.message});
     }
 }
