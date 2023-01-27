@@ -13,7 +13,7 @@ const allUsers={
                     "application/json":{
                         type:'object',
                         example:{
-                            status:"sucess",
+                            status:"success",
                             data:[]
                         }
                     }
