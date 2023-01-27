@@ -24,6 +24,7 @@
     "@babel/register": "^7.18.9",
     "@babel/runtime": "^7.19.4",
     "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "email-validator": "^2.0.4",
     "express": "^4.17.1",

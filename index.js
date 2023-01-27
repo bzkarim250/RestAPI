@@ -1,9 +1,10 @@
 import express from 'express';
-import connectDb from './database/dbConnect';
+import cors from 'cors';
 import dotenv from 'dotenv';
+
+import connectDb from './database/dbConnect';
 import authRoute from './routes/Auth';
-import swaggerUi from 'swagger-ui-express';
-import swaggerSpec from './swagger';
+import swaggerDocs from './api-docs/swagger';
 import productRoute from './routes/Product';
 import userRoute from './routes/User';
 
@@ -13,13 +14,14 @@ dotenv.config();
 
 const app=express();
 app.use(express.json());
+app.use(cors());
 connectDb();
-app.listen(process.env.PORT||3000,()=>{
-    console.log(`app is listenning to ${process.env.PORT}`);
+const port=process.env.PORT?process.env.PORT:3000;
+app.listen(port,()=>{
+    console.log(`app is listenning to ${port}`);
 })
 
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
+swaggerDocs(app);
 app.use("/api/auth",authRoute);
 app.use("/api/product",productRoute);
 app.use("/api/user/",userRoute);
@@ -27,4 +29,6 @@ app.use("/api/user/",userRoute);
 app.use((req,res)=>{
     res.status(404).send('Page note found');
 })
+
+export default app;
 

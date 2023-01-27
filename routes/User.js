@@ -3,5 +3,5 @@ import userController from "../controllers/User";
 
 const route=express.Router();
 
-route.get('/allUsers',userController.allUsers);
+route.get('/all',userController.allUsers);
 export default route;
