@@ -18,7 +18,7 @@ const options={
                 description:'development server'
             },
             {
-                url:'rest-6bna1hw0u-bzkarim250.vercel.app',
+                url:'https://aquamarine-puffer-boot.cyclic.app',
                 decription:'production server'
             }
         ],
