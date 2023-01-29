@@ -3,7 +3,6 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import connectDb from './database/dbConnect';
-import authRoute from './routes/Auth';
 import swaggerDocs from './api-docs/swagger';
 import productRoute from './routes/Product';
 import userRoute from './routes/User';
@@ -22,7 +21,6 @@ app.listen(port,()=>{
 })
 
 swaggerDocs(app);
-app.use("/api/auth",authRoute);
 app.use("/api/product",productRoute);
 app.use("/api/user/",userRoute);
 //404 page  //middleware
