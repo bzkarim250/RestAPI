@@ -101,7 +101,7 @@ export const userRouteDocs={
     "/api/user/{id}":{
         get:getUserByID,
     },
-    "/api/auth/login":{
+    "/api/user/login":{
         post:login,
     }
 }
