@@ -1,6 +1,7 @@
 import express from 'express';
 import productController from '../controllers/Product';
 import { verifyToken } from '../middlewares/authenticate';
+import { validate } from '../middlewares/validation';
 
 const route=express.Router();
 

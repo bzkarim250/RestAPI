@@ -1,20 +1,10 @@
-import { signupSchema } from "../helpers/schemas/signup";
-
-const validate=(req,res,next)=>{
-    const { error } = signupSchema.validate(req.body);
+export const validate=(schema)=>{
+    return(req,res,next)=>{
+    const { error } = schema.validate(req.body);
     if(error){
-        if(error.message.includes('^[a-zA-Z]+(?:[- ]?[a-zA-Z]+)*$')){
-            res.status(400).json({message:"Name is invalid"});
-        }
-        if(error.message.includes('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Z|a-z]{2,}$')){
-            res.status(400).json({message:"Email is not valid"});
-        }
-        if(error.message.includes('^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&*])(?=.{8,})')){
-            res.status(400).json({message:"password must contain at least one uppercase letter, one lowercase letter, one digit, one special character and at least 8 characters"});
-        }
-        res.status(400).json({message:error.details[0].message});
-        return;
+        const errors=error.details[0].message.split('\"');
+        return res.status(404).json({status:"errors",message:errors[1]+errors[2]});
     }
     next();
 }
-export default validate;
+}
