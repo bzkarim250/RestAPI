@@ -1,5 +1,36 @@
 import User from "../model/User";
+import bcrypt from 'bcrypt';
+import { createToken } from "../helpers/jwt";
+
 class userController{
+    static async signup(req,res){
+        try {
+            const user=new User(req.body);
+            const salt=await bcrypt.genSalt(10);
+            user.password=await bcrypt.hash(user.password,salt);
+            await user.save();
+            res.status(201).json({status:"success",data:user})     
+        } catch (error) {
+            res.status(401).json({status:"error",error:error.message});
+            
+        }
+    }
+
+    static async login(req,res){
+        try {
+            const user=await User.findOne({email:req.body.email});
+            if(!user)
+                return res.status(401).json({status:"fail",error:"invalid credentials"});
+            const pass=await bcrypt.compare(req.body.password,user.password);
+            if(!pass)
+                return res.status(401).json({status:"fail",error:"incorrect password"});
+            const accessToken=createToken({user:user._id});
+            res.status(200).json({status:"success",data:user,token:accessToken});
+        } catch (error) {
+            res.status(401).json({status:"error",error:error.message})
+        }
+    }
+
     static async allUsers(req,res){
         try {
             const users=await User.find();
