@@ -41,7 +41,7 @@ describe('users endpoints', () => {
     it('it should create user', (done) => {
       chai
         .request(server)
-        .post('/api/auth/signup')
+        .post('/api/user/signup')
         .send(user)
         .end((error, res) => {
           chai.expect(res).to.have.status(201);
@@ -49,4 +49,14 @@ describe('users endpoints', () => {
           done();
         });
     });
+    it('it should return all users',(done)=>{
+        chai
+        .request(server)
+        .get('/api/user/all')
+        .end((error,res)=>{
+            chai.expect(res).to.have.status(200);
+            chai.expect(res.body.data).to.be.a('array');
+            done();
+        });
+    })
 });

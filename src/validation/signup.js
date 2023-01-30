@@ -14,5 +14,9 @@ export const signupSchema = Joi.object({
     .pattern(new RegExp('^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&*])(?=.{8,})'))
     .required()
     ,
+    age:Joi.string()
+    .pattern(new RegExp('/[0-9]/'))
+    .required()
+    ,
 });
 export default signupSchema;
