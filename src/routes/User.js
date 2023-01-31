@@ -1,6 +1,6 @@
 import express from "express";
 import userController from "../controllers/User";
-import userSchema from '../validation/signup';
+import {userSchema} from '../validation/signup';
 import {validate} from '../middlewares/validation';
 
 const route=express.Router();
