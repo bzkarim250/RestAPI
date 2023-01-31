@@ -1,22 +1,8 @@
 import Joi from "joi";
 
-export const signupSchema = Joi.object({
-    name:Joi.string()
-        .pattern(new RegExp('^[a-zA-Z]+(?:[- ]?[a-zA-Z]+)*$'))
-        .required()
-    ,
-    email:Joi.string()
-        .pattern(new RegExp('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Z|a-z]{2,}$'))
-        .lowercase()
-        .required()
-    ,
-    password:Joi.string()
-    .pattern(new RegExp('^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&*])(?=.{8,})'))
-    .required()
-    ,
-    age:Joi.string()
-    .pattern(new RegExp('/[0-9]/'))
-    .required()
-    ,
+export const signupSchema = Joi.object().keys({
+    name:Joi.string().min(4).required().label("name"),
+    email:Joi.string().lowercase().required().label('email'),
+    password:Joi.string().min(8).required().label('password'),
+    age: Joi.number().min(18).max(100).required().label('age')
 });
-export default signupSchema;
