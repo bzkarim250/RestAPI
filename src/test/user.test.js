@@ -24,7 +24,7 @@ const login={
 const update={
     name:"bz250",
     email:"bzkarim@gmail.com",
-    password:"12345"
+    password:"12345Aa@"
 }
 let token;
 let id;
