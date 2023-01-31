@@ -5,15 +5,14 @@ import { createToken } from "../helpers/jwt";
 class userController{
     static async signup(req,res){
         try {
-            const user=new User(req.body);
-            const salt=await bcrypt.genSalt(10);
-            user.password=await bcrypt.hash(user.password,salt);
+            const user = new User(req.body);
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(user.password,salt)
             await user.save();
-            res.status(201).json({status:"success",data:user})     
-        } catch (error) {
-            res.status(401).json({status:"error",error:error.message});
-            
-        }
+            res.status(201).json({status:"success",data:user});
+          } catch (error) {
+            res.status(401).json({status:"fail", error: error.message });
+          }
     }
 
     static async login(req,res){
