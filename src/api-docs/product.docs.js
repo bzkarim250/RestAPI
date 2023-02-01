@@ -1,7 +1,8 @@
 const allProducts={
-    tags:['Products'],
+    tags:['Product'],
     description:"List of All Products",
-    security:[{
+    security:[
+    {
         token:[],
     }
 ],

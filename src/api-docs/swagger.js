@@ -27,15 +27,13 @@ const options={
             {name:'Product', decription:'Product Routes'}
         ],
         components:{
-            securitySchems:{
-                token:{
-                    type:'apiKey',
-                    scheme:'bearer',
-                    bearerFromat:'JWT',
-                    name:'token',
-                    in:'header'
+            securitySchemes: {
+                token: {
+                  type: "apiKey",
+                  name: "Authorization",
+                  in: "header",
                 },
-            },
+              },
         },
         paths:{...userRouteDocs,...productRouteDocs},
         },
