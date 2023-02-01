@@ -1,5 +1,5 @@
 const allUsers={
-    tags:['Users'],
+    tags:['User'],
     description:"Get All Users",
     security:[
         {
