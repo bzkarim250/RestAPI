@@ -5,7 +5,7 @@ dotenv.config();
 
 export const verifyToken=(req,res,next)=>{
     try {
-        const authHeader = req.headers.authorization;
+        const authHeader = req.headers.token;
         if(!authHeader)
             return res.status(401).json({staus:"error",error:"You are not authenticated"});
         const token=authHeader.split(' ')[1];

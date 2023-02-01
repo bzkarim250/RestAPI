@@ -28,13 +28,15 @@ const options={
         ],
         components:{
             securitySchemes: {
-                token: {
-                  type: "apiKey",
-                  name: "Authorization",
-                  in: "header",
-                },
+              token: {
+                type: 'apiKey',
+                scheme: 'bearer',
+                bearerFormat: 'JWT',
+                name:"token",
+                in:"header"
               },
-        },
+            },
+          },
         paths:{...userRouteDocs,...productRouteDocs},
         },
         apis:['.../routes/**/*.js']
