@@ -71,7 +71,7 @@ const login={
                         password:{
                             type:"String",
                             description:"Enter Password",
-                            example:'"1234"'
+                            example:'"12345Aa@"'
                         },
                     }
                 }
