@@ -55,5 +55,16 @@ class userController{
             res.status(404).json({status:"Error",error:error.message});
         }
     }
+    static async updateUser(req,res){
+        try {
+            const user=req.body;
+            const salt=await bcrypt.genSalt(10);
+            user.password =await bcrypt.hash(user.password,salt)
+            const update=await User.findByIdAndUpdate(req.params.id,{$set:user},{new:true});
+            res.status(200).json({status:"success",data:update});
+        } catch (error) {
+            res.status(500).json({status:"error",error:error.message});
+        }
+    }
 }
 export default userController;

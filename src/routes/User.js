@@ -8,4 +8,5 @@ route.post('/signup',validate(userSchema),userController.signup);
 route.post('/login',userController.login);
 route.get('/all',userController.allUsers);
 route.get('/:id',userController.getUserById);
+route.put('/update/:id',userController.updateUser);
 export default route;
