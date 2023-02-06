@@ -66,5 +66,13 @@ class userController{
             res.status(500).json({status:"error",error:error.message});
         }
     }
+    static async deleteUser(req,res){
+        try {
+            const deletedUser=await findByIdAndDelete({_id:req.params.id});
+            res.status(200).json({status:"success",data:deletedUser}); 
+        } catch (error) {
+            res.status(400).json({status:"error",error:error.message});
+        }
+    }
 }
 export default userController;
