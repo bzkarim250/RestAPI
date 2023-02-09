@@ -66,7 +66,7 @@ const login={
                         email:{
                             type:"String",
                             description:"Enter an email",
-                            example:"bzkarim@gmail.com",
+                            example:"bzkarim250@gmail.com",
                         },
                         password:{
                             type:"String",
