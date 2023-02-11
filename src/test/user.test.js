@@ -58,5 +58,15 @@ describe('users endpoints', () => {
             chai.expect(res.body.data).to.be.a('array');
             done();
         });
+    });
+    it('it shoulld return user by id',(done)=>{
+        chai
+        .request(server)
+        .get('/api/user/63d24ca51e652d2500753e6f')
+        .end((error,res)=>{
+            chai.expect(res).to.hava.status(200);
+            chai.expect(res.body.data).to.be.a('array');
+            done();
+        })
     })
 });
